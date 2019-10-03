@@ -8,20 +8,15 @@ const User = require("../models/User");
 const router = express.Router();
 
 router.post(
-  "/register",
+  "/",
   [
-    check("name", "Please, enter you name")
-      .not()
-      .isEmpty(),
     check("email", "Please, write a valid email address").isEmail(),
-    check(
-      "password",
-      "Please, enter a password with more than 0 characters"
-    ).isLength({ min: 1 })
+    check("email", "Wrong email or password").exists(),
+    check("password", "Wrong email or password").exists()
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    let { name, email, password } = req.body;
+    let { email, password } = req.body;
 
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -30,22 +25,19 @@ router.post(
     try {
       // See if user exist
       let user = await User.findOne({ email });
-      if (user) {
+      if (!user) {
         return res.status(400).json({
-          errors: [{ msg: "User with this email address already exists" }]
+          errors: [{ msg: "Wrong email or password" }]
         });
       }
-      // Encrypt password
-      const salt = await bcrypt.genSalt(10);
-      password = await bcrypt.hash(password, salt);
 
-      // Save user to db
-      user = new User({
-        name,
-        email,
-        password
-      });
-      await user.save();
+      const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordMatch) {
+        return res.status(400).json({
+          errors: [{ msg: "Wrong email or password" }]
+        });
+      }
 
       // Return jsonwebtoken
       const payload = {
@@ -53,6 +45,7 @@ router.post(
           email: user.email
         }
       };
+
       jwt.sign(payload, config.get("jwtSecret"), (err, token) => {
         if (err) throw err;
         res.json({ token });
