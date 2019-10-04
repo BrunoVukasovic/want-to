@@ -1,0 +1,29 @@
+.Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.MainCircle {
+  display: flex;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  height: 10rem;
+  width: 10rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #bbb;
+  border-radius: 50%;
+}
+
+.Circle {
+  display: flex;
+  height: 10rem;
+  width: 10rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #bbb;
+  border-radius: 50%;
+}
