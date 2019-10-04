@@ -1,36 +1,33 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Component, Fragment } from "react";
+import { Circle } from "../";
 import styles from "./styles.module.css";
 
-// El.getBoundingClientRect()
+export default class LandingPage extends Component {
+  state = {
+    freeHorizontalSpots: [3],
+    takenHorizontalSpots: [2],
+    takenVerticalSpots: [2],
+    freeSpots: [3, 4, 6, 7, 8],
+    takenSpots: [1, 2, 5]
+  };
 
-const LandingPage = () => {
-  // const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    // code to run on component mount
-    // const rect = this.selector.current.getBoundingClientRect();
-    console.log("Landing");
-  }, []);
-
-  /*
   handleClick = () => {
-    setCount(count + 1);
-    console.log(count);
-  };  */
-
-  return (
-    <Fragment>
-      <div className={styles.Container}>
-        <div className={styles.MainCircle}>Want To Do ...</div>
-        <div className={styles.Circle}>Want To Do ...</div>
-        <div className={styles.Circle}>Want To Do ...</div>
-        <div className={styles.Circle}>Want To Do ...</div>
-        <div className={styles.Circle}>Want To Do ...</div>
-        <div className={styles.Circle}>Want To Do ...</div>
-        <div className={styles.Circle}>Want To Do ...</div>
-      </div>
-    </Fragment>
-  );
-};
-
-export default LandingPage;
+    console.log("clik");
+  };
+  render() {
+    return (
+      <Fragment>
+        <button>Log In </button>
+        <div className={styles.Container}>
+          <div className={styles.MainCircle}>Want To Do ...</div>
+          <div className={styles.CircleNewItem} onClick={this.handleClick}>
+            Something new?
+          </div>
+          <Circle>Movies</Circle>
+          <Circle>Books</Circle>
+          <Circle>Trips</Circle>
+        </div>
+      </Fragment>
+    );
+  }
+}

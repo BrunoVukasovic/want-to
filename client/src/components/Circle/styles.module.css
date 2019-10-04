@@ -1,0 +1,9 @@
+.Circle {
+  display: flex;
+  height: 10rem;
+  width: 10rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(247, 186, 186);
+  border-radius: 50%;
+}

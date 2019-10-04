@@ -3,13 +3,14 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 1rem;
+  align-content: space-around;
+  justify-items: center;
 }
 
 .MainCircle {
   display: flex;
-  position: absolute;
-  top: 40%;
-  left: 40%;
+  grid-column: 2/3;
+  grid-row: 2/3;
   height: 10rem;
   width: 10rem;
   justify-content: center;
@@ -18,12 +19,14 @@
   border-radius: 50%;
 }
 
-.Circle {
+.CircleNewItem {
   display: flex;
+  grid-column: 3/4;
+  grid-row: 3/4;
   height: 10rem;
   width: 10rem;
   justify-content: center;
   align-items: center;
-  background-color: #bbb;
+  background-color: rgb(247, 186, 186);
   border-radius: 50%;
 }
