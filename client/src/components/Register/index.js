@@ -1,8 +1,15 @@
+import { setAlert } from "../../actions/alert";
 import axois from "axios";
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import styles from "./styles.module.css";
 
-const Register = () => {
+// const Register = props => {
+// props.setAlert("Passwords do not match", "red");
+// destrukturiranje
+// setAlert("Passwords do not match", "red");
+const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,7 +25,8 @@ const Register = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("Passwords do not match");
+      setAlert("Passwords do not match");
+      // props.setAlert("Passwords do not match", "red");
     } else {
       console.log(formData);
 
@@ -100,4 +108,12 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
+
+// connect( mapStateToProps, action to call )
+export default connect(
+  null,
+  { setAlert }
+)(Register);
