@@ -5,10 +5,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styles from "./styles.module.css";
 
-// const Register = props => {
-// props.setAlert("Passwords do not match", "red");
-// destrukturiranje
-// setAlert("Passwords do not match", "red");
 const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: "",

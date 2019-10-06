@@ -1,4 +1,4 @@
-import { LandingPage, Register, Login, Alert } from "./components";
+import { LandingPage, Register, Login, Alert, List } from "./components";
 import React, { Fragment } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -12,7 +12,8 @@ const App = () => (
         <Alert></Alert>
         <Switch>
           <Route exact path="/" component={LandingPage}></Route>
-          <Route exact path="/login" component={Login}></Route>
+          <Route path="/list/:category" component={List}></Route>
+          <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
         </Switch>
       </Fragment>

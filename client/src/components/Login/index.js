@@ -18,7 +18,6 @@ const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    console.log(formData);
     const user = {
       email,
       password
